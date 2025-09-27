@@ -6,7 +6,6 @@ import { Suspense, useMemo, useState } from "react";
 import * as THREE from "three";
 
 // Small offsets to draw directly on the globe without z-fighting
-const ARC_SURFACE_OFFSET = 0; // ~0.6% над поверхностью
 type CityKey =
   | "almaty" | "shanghai" | "moscow" | "tashkent" | "bishkek" | "beijing" | "shenzhen" | "guangzhou" | "chengdu" | "hongkong" | "berlin" | "warsaw" | "vienna" | "budapest" | "prague" | "istanbul";
 

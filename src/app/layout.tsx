@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import SupportChat from "@/components/SupportChat";
 import ChatLoader from "@/components/ChatLoader";
+import { LocaleProvider } from "@/context/LocaleProvider";
  
 
 const inter = Inter({
@@ -28,11 +29,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={`${inter.variable} antialiased`}>
-        <ChatLoader />
-        {children}
-        <Footer />
-        <SupportChat />
+      <body className={`${inter.variable} antialiased`} suppressHydrationWarning>
+        <LocaleProvider>
+          <ChatLoader />
+          {children}
+          <Footer />
+          <SupportChat />
+        </LocaleProvider>
       </body>
     </html>
   );

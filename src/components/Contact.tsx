@@ -1,110 +1,92 @@
 "use client";
 
-import { useState } from "react";
 import { Phone, Mail, MessageCircle } from "lucide-react";
+import { useLocale } from "@/context/LocaleProvider";
 
-interface ContactFormData {
-  to_name: string;
-  from_name: string;
-  message: string;
-}
 
 export default function Contact() {
-  const [formData, setFormData] = useState<ContactFormData>({ to_name: "", from_name: "", message: "" });
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError(null);
-    setSuccess(false);
-    // EmailJS удалён: имитируем успешную отправку локально
-    setTimeout(() => {
-      setSuccess(true);
-      setFormData({ to_name: "", from_name: "", message: "" });
-      setIsLoading(false);
-    }, 300);
-  };
+  const { t } = useLocale();
 
   return (
-    <section id="contacts" className="py-16 sm:py-24 border-t border-[#142436]/5 dark:border-white/10 bg-[#142436] text-white">
+    <section id="contacts" className="py-16 sm:py-24 border-t border-[#142436]/5 dark:border-white/10 bg-[#1E3F5F] text-white">
       <div className="mx-auto max-w-[1530px] px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Свяжитесь с нами</h2>
         <p className="text-white/80 text-center mb-12 max-w-2xl mx-auto">Оставьте контакты и параметры груза — вернёмся с предложением в течение дня.</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          {/* Форма */}
-          <div className="p-2 sm:p-4 w-full">
-            <form className="space-y-6" onSubmit={handleSubmit}>
+        {/* Как мы работаем — компактное дерево шагов */}
+        <div className="mt-16">
+          <h3 className="text-center text-3xl font-bold mb-10">Как мы работаем</h3>
+          <div className="relative max-w-3xl mx-auto">
+            {/* Центральная вертикальная линия */}
+            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-white/20" />
+
+            {/* Шаг 1 */}
+            <div className="flex justify-center mb-12">
+              <div className="rounded-2xl bg-white/10 border border-white/15 px-6 py-5 w-[300px] text-center shadow">
+                <div className="text-white/70 text-sm mb-1">{t("process.step1.label")}</div>
+                <div className="text-xl font-semibold mb-1">{t("process.step1.title")}</div>
+                <div className="text-white/80 text-sm">{t("process.step1.text")}</div>
+              </div>
+            </div>
+
+            {/* Развилка 1 */}
+            <div className="relative mb-12">
+              <div className="absolute left-1/2 -translate-x-1/2 top-1/2 h-px w-[80%] bg-white/20" />
+              <div className="absolute left-[10%] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[var(--brand)]" />
+              <div className="absolute right-[10%] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[var(--brand)]" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-white/80 mb-1">Имя</label>
-                  <input
-                    type="text"
-                    name="to_name"
-                    value={formData.to_name}
-                    onChange={handleChange}
-                  className="w-full p-3 bg-[#f7f7f7] dark:bg-[#222222] text-[#142436] dark:text-white rounded-lg focus:ring-2 focus:ring-[var(--brand)] focus:outline-none border border-[#142436]/10 dark:border-white/10"
-                  />
+                <div className="md:pr-8">
+                  <div className="rounded-2xl bg-white/10 border border-white/15 px-5 py-4 text-center">
+                    <div className="text-lg font-semibold mb-1">{t("process.calc.title")}</div>
+                    <div className="text-white/80 text-sm">{t("process.calc.text")}</div>
+                  </div>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-white/80 mb-1">Email</label>
-                  <input
-                    type="email"
-                    name="from_name"
-                    value={formData.from_name}
-                    onChange={handleChange}
-                  className="w-full p-3 bg-[#f7f7f7] dark:bg-[#222222] text-[#142436] dark:text-white rounded-lg focus:ring-2 focus:ring-[var(--brand)] focus:outline-none border border-[#142436]/10 dark:border-white/10"
-                  />
+                <div className="md:pl-8">
+                  <div className="rounded-2xl bg-white/10 border border-white/15 px-5 py-4 text-center">
+                    <div className="text-lg font-semibold mb-1">{t("process.docs.title")}</div>
+                    <div className="text-white/80 text-sm">{t("process.docs.text")}</div>
+                  </div>
                 </div>
               </div>
+            </div>
 
-              <div>
-                <label className="block text-sm font-medium text-white/80 mb-1">Сообщение</label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                className="w-full p-3 bg-[#f7f7f7] dark:bg-[#222222] text-[#142436] dark:text-white rounded-lg h-32 focus:ring-2 focus:ring-[var(--brand)] focus:outline-none resize-y border border-[#142436]/10 dark:border-white/10"
-                />
+            {/* Развилка 2 */}
+            <div className="relative mb-6">
+              <div className="absolute left-1/2 -translate-x-1/2 top-1/2 h-px w-[70%] bg-white/20" />
+              <div className="absolute left-[15%] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[var(--brand)]" />
+              <div className="absolute right-[15%] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[var(--brand)]" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="md:pr-8">
+                  <div className="rounded-2xl bg-white/10 border border-white/15 px-5 py-4 text-center">
+                    <div className="text-lg font-semibold mb-1">{t("process.delivery.title")}</div>
+                    <div className="text-white/80 text-sm">{t("process.delivery.text")}</div>
+                  </div>
+                </div>
+                <div className="md:pl-8">
+                  <div className="rounded-2xl bg-white/10 border border-white/15 px-5 py-4 text-center">
+                    <div className="text-lg font-semibold mb-1">{t("process.support.title")}</div>
+                    <div className="text-white/80 text-sm">{t("process.support.text")}</div>
+                  </div>
+                </div>
               </div>
+            </div>
 
-              <button
-                type="submit"
-                className="w-full bg-[var(--brand)] text-white p-3 rounded-lg hover:brightness-110 transition disabled:opacity-60"
-                disabled={isLoading}
-              >
-                {isLoading ? "Отправка..." : "Отправить"}
-              </button>
-
-              {error && (
-                <p className="text-red-500 text-center mt-2">{error}</p>
-              )}
-
-              {success && (
-                <p className="text-green-500 text-center mt-2">Сообщение отправлено!</p>
-              )}
-            </form>
+            {/* CTA */}
+            <div className="flex justify-center">
+              <a href="#contacts" className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-[var(--brand)] text-white font-semibold shadow hover:brightness-110">
+                {t("process.cta")}
+              </a>
+            </div>
           </div>
+        </div>
 
-          {/* Контакты */}
-          <div className="flex flex-col space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          {/* Контакты: только 3 метода */}
+          <div className="flex flex-col space-y-6 md:col-span-3 md:grid md:grid-cols-3 md:space-y-0 md:gap-6">
             <a href="tel:+77010701907" className="p-8 rounded-xl text-center bg-white/10 hover:bg-white/15 transition-all hover:scale-[1.02] border border-white/15">
               <Phone className="w-8 h-8 text-[var(--brand)] mx-auto mb-4" />
               <h3 className="font-semibold text-xl mb-2">Телефон</h3>
               <p className="text-white/80">+7 701 070 19 07</p>
-            </a>
-            <a href="mailto:info@tuotuo.kz" className="p-8 rounded-xl text-center bg-white/10 hover:bg-white/15 transition-all hover:scale-[1.02] border border-white/15">
-              <Mail className="w-8 h-8 text-[var(--brand)] mx-auto mb-4" />
-              <h3 className="font-semibold text-xl mb-2">Email</h3>
-              <p className="text-white/80">info@tuotuo.kz</p>
             </a>
             <div className="p-8 rounded-xl text-center bg-white/10 hover:bg-white/15 transition-all hover:scale-[1.02] border border-white/15">
               <MessageCircle className="w-8 h-8 text-[var(--brand)] mx-auto mb-4" />
@@ -114,6 +96,11 @@ export default function Contact() {
                 <a href="https://api.whatsapp.com/send?phone=77755549739&text=start" className="text-white/80 hover:text-[var(--brand)] transition-colors">WhatsApp</a>
               </div>
             </div>
+            <a href="mailto:info@tuotuo.kz" className="p-8 rounded-xl text-center bg-white/10 hover:bg-white/15 transition-all hover:scale-[1.02] border border-white/15">
+              <Mail className="w-8 h-8 text-[var(--brand)] mx-auto mb-4" />
+              <h3 className="font-semibold text-xl mb-2">Email</h3>
+              <p className="text-white/80">info@tuotuo.kz</p>
+            </a>
           </div>
         </div>
       </div>

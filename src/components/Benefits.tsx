@@ -1,53 +1,57 @@
  
+"use client";
+
+import { useLocale } from "@/context/LocaleProvider";
 
 export default function Benefits() {
+  const { t } = useLocale();
   const benefits = [
     { 
-      title: "Постоплата", 
-      description: "Оплачивайте услуги после доставки груза. Никаких предоплат и рисков.",
+      title: t("benefits.postpay.title"), 
+      description: t("benefits.postpay.desc"),
       gif: "/animate_icons/oplata.gif",
-      details: "Полная гарантия качества до оплаты"
+      details: t("benefits.postpay.details")
     },
     { 
-      title: "Лучшее качество", 
-      description: "Европейские тягачи, профессиональные водители, современная техника.",
+      title: t("benefits.quality.title"), 
+      description: t("benefits.quality.desc"),
       gif: "/animate_icons/kachestvo_proverka.gif",
-      details: "Сертифицированное оборудование и персонал"
+      details: t("benefits.quality.details")
     },
     { 
-      title: "Скорость доставки", 
-      description: "Оптимальные маршруты, минимальные простои, быстрая обработка заказов.",
+      title: t("benefits.speed.title"), 
+      description: t("benefits.speed.desc"),
       gif: "/animate_icons/skorost_dostavki.gif",
-      details: "Средняя скорость доставки 24-48 часов"
+      details: t("benefits.speed.details")
     },
     { 
-      title: "Безналичная оплата", 
-      description: "Удобные способы оплаты: банковский перевод, карта, электронные платежи.",
+      title: t("benefits.cashless.title"), 
+      description: t("benefits.cashless.desc"),
       gif: "/animate_icons/online_oplata.gif",
-      details: "Все виды безналичных расчетов"
+      details: t("benefits.cashless.details")
     },
     { 
-      title: "Отслеживание груза", 
-      description: "Полный контроль в реальном времени: GPS-трекинг, уведомления о статусах.",
+      title: t("benefits.tracking.title"), 
+      description: t("benefits.tracking.desc"),
       gif: "/animate_icons/otslezhivanie.gif",
-      details: "GPS-мониторинг 24/7"
+      details: t("benefits.tracking.details")
     },
     {
-      title: "Поддержка 24/7",
-      description: "Круглосуточная поддержка клиентов. Мы всегда на связи для решения ваших вопросов.",
+      title: t("benefits.support.title"),
+      description: t("benefits.support.desc"),
       gif: "/animate_icons/support_24_7.gif", // Ссылка подготовлена для новой гифки
-      details: "Онлайн-чат, телефон, email"
+      details: t("benefits.support.details")
     }
   ];
 
   return (
-    <section id="benefits" className="py-16 bg-gray-50 text-[#142436]">
+    <section id="benefits" className="py-16 text-[#142436]">
       <div className="mx-auto max-w-[1530px] px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <div className="mb-12 flex justify-start">
           <div className="group inline-flex flex-col items-start text-left">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#142436] transition-colors duration-300 group-hover:text-orange-600">
-              Преимущества работы с нами
+              {t("benefits.heading")}
             </h2>
             <div className="mt-2 h-1 w-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full transition-all duration-300 group-hover:w-full" />
           </div>
@@ -55,12 +59,12 @@ export default function Benefits() {
         
         {/* Benefits List */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {benefits.map((benefit, index) => (
+          {benefits.map((benefit) => (
             <div 
               key={benefit.title}
               className="group cursor-pointer"
             >
-              <div className="bg-white rounded-3xl p-8 text-center transition-all duration-300 hover:-translate-y-3 hover:shadow-xl border border-orange-200 h-64 flex flex-col justify-center items-center">
+              <div className="bg-white rounded-3xl p-8 text-center transition-all duration-300 hover:-translate-y-3 hover:shadow-xl border border-sky-200 h-64 flex flex-col justify-center items-center">
                 {/* Animated GIF */}
                 <div className="mb-6 group-hover:scale-125 transition-transform duration-300">
                   <img 

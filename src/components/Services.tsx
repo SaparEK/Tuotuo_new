@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useLocale } from "@/context/LocaleProvider";
 
 interface ServiceDetails {
   features: string[];
@@ -14,34 +15,65 @@ interface Service {
 }
 
 export default function Services() {
+  const { t } = useLocale();
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   const services = [
     {
-      title: "Перевозка фурами",
+      title: t("services.truck.title"),
       backgroundImage: "/images/truck-transport.png",
       details: {
-        features: ["FTL перевозки", "Рефрижераторы", "Мега-трейлеры", "Таможенное оформление"],
-        description: "Международные автоперевозки по СНГ и Азии. Прямые рейсы на фурах: тенты, рефрижераторы, меги. Надежно, быстро, с полным сопровождением.",
-        benefits: ["Быстрая доставка", "Полное сопровождение", "Страхование груза", "Отслеживание в реальном времени"]
+        features: [
+          t("services.truck.features.0"),
+          t("services.truck.features.1"),
+          t("services.truck.features.2"),
+          t("services.truck.features.3"),
+        ],
+        description: t("services.truck.description"),
+        benefits: [
+          t("services.truck.benefits.0"),
+          t("services.truck.benefits.1"),
+          t("services.truck.benefits.2"),
+          t("services.truck.benefits.3"),
+        ]
       }
     },
     {
-      title: "Складские услуги",
+      title: t("services.warehouse.title"),
       backgroundImage: "/images/warehouse-services.jpg",
       details: {
-        features: ["Хранение грузов", "Кросс-докинг", "Комплектация", "Маркировка"],
-        description: "Полный цикл складских услуг: приемка, хранение, комплектация, отгрузка. Современные склады с системой контроля качества.",
-        benefits: ["Современное оборудование", "Контроль качества", "Быстрая обработка", "Гибкие условия хранения"]
+        features: [
+          t("services.warehouse.features.0"),
+          t("services.warehouse.features.1"),
+          t("services.warehouse.features.2"),
+          t("services.warehouse.features.3"),
+        ],
+        description: t("services.warehouse.description"),
+        benefits: [
+          t("services.warehouse.benefits.0"),
+          t("services.warehouse.benefits.1"),
+          t("services.warehouse.benefits.2"),
+          t("services.warehouse.benefits.3"),
+        ]
       }
     },
     {
-      title: "Перевозка контейнеров",
+      title: t("services.container.title"),
       backgroundImage: "/images/container-transport.jpg",
       details: {
-        features: ["20' и 40' контейнеры", "Рефрижераторные", "Опасные грузы", "Мультимодальные перевозки"],
-        description: "Морские и железнодорожные контейнерные перевозки. 20' и 40' контейнеры, рефрижераторные контейнеры, опасные грузы. Полный цикл от порта до склада.",
-        benefits: ["Мультимодальность", "Специализированные контейнеры", "Обработка опасных грузов", "Интеграция с портами"]
+        features: [
+          t("services.container.features.0"),
+          t("services.container.features.1"),
+          t("services.container.features.2"),
+          t("services.container.features.3"),
+        ],
+        description: t("services.container.description"),
+        benefits: [
+          t("services.container.benefits.0"),
+          t("services.container.benefits.1"),
+          t("services.container.benefits.2"),
+          t("services.container.benefits.3"),
+        ]
       }
     }
   ];
@@ -53,14 +85,14 @@ export default function Services() {
         <div className="mb-12 flex justify-center">
           <div className="group inline-flex flex-col items-center text-center">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#142436] transition-colors duration-300 group-hover:text-orange-600">
-              Наши услуги
+              {t("services.heading")}
             </h2>
             <div className="mt-2 h-1 w-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full transition-all duration-300 group-hover:w-full" />
           </div>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
+          {services.map((service) => (
             <div 
               key={service.title}
               className="group relative h-[70vh] rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105"
@@ -93,7 +125,7 @@ export default function Services() {
                     onClick={() => setSelectedService(service)}
                     className="inline-flex items-center justify-center px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg w-fit"
                   >
-                    Узнать подробнее
+                    {t("services.more")}
                     <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
@@ -138,7 +170,7 @@ export default function Services() {
 
                 {/* Features */}
                 <div className="mb-8">
-                  <h4 className="text-xl font-semibold text-gray-900 mb-4">Особенности услуги</h4>
+                  <h4 className="text-xl font-semibold text-gray-900 mb-4">{t("services.features")}</h4>
                   <div className="grid grid-cols-2 gap-3">
                     {selectedService.details.features.map((feature, index) => (
                       <div key={index} className="flex items-center gap-3">
@@ -151,7 +183,7 @@ export default function Services() {
 
                 {/* Benefits */}
                 <div className="mb-8">
-                  <h4 className="text-xl font-semibold text-gray-900 mb-4">Преимущества</h4>
+                  <h4 className="text-xl font-semibold text-gray-900 mb-4">{t("services.benefits")}</h4>
                   <div className="grid grid-cols-2 gap-3">
                     {selectedService.details.benefits.map((benefit, index) => (
                       <div key={index} className="flex items-center gap-3">
@@ -165,13 +197,13 @@ export default function Services() {
                 {/* CTA Button */}
                 <div className="flex gap-4">
                   <button className="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-xl transition-colors">
-                    Заказать услугу
+                    {t("services.order")}
                   </button>
                   <button 
                     onClick={() => setSelectedService(null)}
                     className="px-6 py-3 border border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 transition-colors"
                   >
-                    Закрыть
+                    {t("common.close")}
                   </button>
                 </div>
               </div>

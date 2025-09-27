@@ -108,3 +108,20 @@ html {
 .rotate-slow {
   animation: rotateSlow 12s linear infinite;
 }
+
+/* Soft sky background utility (stronger) */
+.bg-soft-sky {
+  background-image:
+    radial-gradient(800px 500px at -10% -10%, rgba(125, 211, 252, 0.25) 0%, rgba(125, 211, 252, 0) 60%),
+    radial-gradient(700px 480px at 110% 110%, rgba(186, 230, 253, 0.35) 0%, rgba(186, 230, 253, 0) 65%),
+    linear-gradient(180deg, #f0f9ff 0%, #e8f4ff 40%, #ffffff 100%);
+}
+
+/* Seamless background for entire page (except hero) */
+.bg-seamless-sky {
+  background-image:
+    radial-gradient(1200px 800px at -5% -5%, rgba(125, 211, 252, 0.2) 0%, rgba(125, 211, 252, 0) 50%),
+    radial-gradient(1000px 700px at 105% 105%, rgba(186, 230, 253, 0.3) 0%, rgba(186, 230, 253, 0) 55%),
+    linear-gradient(180deg, #f0f9ff 0%, #e8f4ff 35%, #ffffff 100%);
+  background-attachment: fixed;
+}

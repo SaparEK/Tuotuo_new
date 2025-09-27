@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useLocale } from "@/context/LocaleProvider";
 
 export default function Testimonials() {
+  const { t } = useLocale();
   const reviews = [
     {
       text: "Отличная логистическая компания! Быстро доставили груз из Алматы в Москву. Водитель был вежливый, груз пришел в целости и сохранности. Рекомендую!",
@@ -125,9 +127,6 @@ export default function Testimonials() {
     </div>
   );
 
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index);
-  };
 
   const nextSlide = () => {
     if (isTransitioning) return;
@@ -184,11 +183,11 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section className="border-t border-[#142436]/5 dark:border-white/10 text-[#142436] dark:text-white">
+    <section className="border-t border-[#142436]/5 dark:border-white/10 text-[#142436]">
       <div className="mx-auto max-w-[1530px] px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         <div className="text-center mb-12 text-[#142436] dark:text-white">
           <div className="group inline-flex flex-col items-center text-center">
-            <h2 className="text-2xl sm:text-3xl font-normal tracking-tight mb-4 text-[#142436] dark:text-[#142436] transition-colors duration-300 group-hover:text-orange-600">Отзывы клиентов</h2>
+            <h2 className="text-2xl sm:text-3xl font-normal tracking-tight mb-4 text-[#142436] dark:text-[#142436] transition-colors duration-300 group-hover:text-orange-600">{t("testimonials.heading")}</h2>
             <div className="h-1 w-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full transition-all duration-300 group-hover:w-full" />
           </div>
         </div>
