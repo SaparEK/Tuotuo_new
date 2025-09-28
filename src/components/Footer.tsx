@@ -15,7 +15,7 @@ export default function Footer() {
               <span className="text-xl font-semibold">TUOTUOKZ</span>
             </div>
             <p className="text-white/80 mb-6 max-w-md">
-              Надёжные логистические решения: авто перевозки, таможенное оформление, склад и фулфилмент. Надёжно, прозрачно, вовремя.
+              {t("footer.company.description")}
             </p>
             <div className="flex gap-4">
               <a href="https://t.me/tuotuokz_bot" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
@@ -33,19 +33,19 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Услуги</h3>
+            <h3 className="text-lg font-semibold mb-4">{t("footer.services.heading")}</h3>
             <ul className="space-y-2 text-white/80">
-              <li><a href="#" className="hover:text-white transition-colors">Авто перевозки</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Таможенное оформление</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Складские услуги</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Фулфилмент</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Контейнерные перевозки</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">{t("footer.services.items.0")}</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">{t("footer.services.items.1")}</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">{t("footer.services.items.2")}</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">{t("footer.services.items.3")}</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">{t("footer.services.items.4")}</a></li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Контакты</h3>
+            <h3 className="text-lg font-semibold mb-4">{t("footer.contacts.heading")}</h3>
             <ul className="space-y-2 text-white/80">
               <li className="flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,23 +59,23 @@ export default function Footer() {
                 </svg>
                 <a href="mailto:info@tuotuo.kz" className="hover:text-white transition-colors">info@tuotuo.kz</a>
               </li>
-              <li className="flex items-center gap-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                </svg>
-                Алматы, Казахстан
-              </li>
+                <li className="flex items-center gap-2">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  {t("footer.addressValue")}
+                </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-white/10 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-white/60 text-sm">© 2025 TuoTuoKz. Все права защищены.</p>
+            <p className="text-white/60 text-sm">{t("footer.copyright")}</p>
             <div className="flex items-center gap-6 text-sm">
-              <a href="/policy" className="text-white/60 hover:text-white transition-colors">Политика конфиденциальности</a>
-              <a href="/agreement" className="text-white/60 hover:text-white transition-colors">Условия пользования</a>
+              <a href="/policy" className="text-white/60 hover:text-white transition-colors">{t("footer.policy")}</a>
+              <a href="/agreement" className="text-white/60 hover:text-white transition-colors">{t("footer.terms")}</a>
             </div>
           </div>
         </div>

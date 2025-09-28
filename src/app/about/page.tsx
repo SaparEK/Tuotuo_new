@@ -8,10 +8,10 @@ import { useLocale } from "@/context/LocaleProvider";
 export default function AboutPage() {
   const { t } = useLocale();
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-seamless-sky text-foreground">
       <Header />
         <main className="bg-seamless-sky">
-        {/* Hero section with same background as support page */}
+        {/* Hero Section */}
         <section className="relative h-[60vh] overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-[#2B679B] via-[#1e4a6b] to-[#0f2a3d]"></div>
           <div className="absolute inset-0 bg-black/20"></div>
@@ -37,6 +37,28 @@ export default function AboutPage() {
         {/* История, достижения, ценности */}
         <About />
 
+
+        {/* Наша команда (плейсхолдеры как на макете) */}
+        <section className="py-12">
+          <div className="mx-auto max-w-[1530px] px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-center mb-8">{t("about.team.heading")}</h2>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                { name: "Алексей Иванов", role: t("about.team.ceo.role"), about: t("about.team.ceo.about") },
+                { name: "Елена Петрова", role: t("about.team.coo.role"), about: t("about.team.coo.about") },
+                { name: "Дмитрий Смирнов", role: t("about.team.cto.role"), about: t("about.team.cto.about") },
+                { name: "Анна Козлова", role: t("about.team.sales.role"), about: t("about.team.sales.about") },
+              ].map((p) => (
+                <div key={p.name} className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
+                  <div className="h-40 bg-gray-100 rounded-lg mb-4" />
+                  <div className="font-semibold">{p.name}</div>
+                  <div className="text-sm text-orange-600 mb-2">{p.role}</div>
+                  <div className="text-sm text-gray-600">{p.about}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* География деятельности */}
         <GeoCoverage />

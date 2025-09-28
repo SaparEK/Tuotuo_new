@@ -38,7 +38,7 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="section-padding pb-16 md:pb-32 bg-white text-[#142436]">
+    <section id="faq" className="section-padding pb-16 md:pb-32 text-[#142436]">
       <div className="mx-auto max-w-[1530px] px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 md:mb-16">
           <div className="group inline-flex flex-col items-center text-center">

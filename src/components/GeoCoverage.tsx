@@ -14,63 +14,137 @@ type RegionInfo = {
   services: string[];
 };
 
-const regions: Record<RegionKey, RegionInfo> = {
-  kz: {
-    title: "Казахстан",
-    description:
-      "Перевозки по Казахстану и транзит в соседние страны. Хабы: Алматы, Астана, Шымкент.",
-    highlights: ["Сборные и FTL", "Таможенное оформление", "Транзит через КЗ"],
-    hubs: ["Алматы", "Астана", "Шымкент", "Караганда"],
-    services: ["Авто и рефрижераторы", "Консолидация", "Складская обработка", "Страхование"],
-  },
-  uz: {
-    title: "Узбекистан",
-    description:
-      "Маршруты в Ташкент, Самарканд, Бухару и обратно. Консолидация и доставка до двери.",
-    highlights: ["Консолидация", "Растаможка", "Отслеживание"],
-    hubs: ["Ташкент", "Самарканд", "Бухара", "Наманган"],
-    services: ["FTL/LTL", "Сертификация", "Внутригородская доставка", "Страхование"],
-  },
-  tm: {
-    title: "Туркменистан",
-    description:
-      "Работа с Ашхабадом и промышленными регионами. Экспорт/импорт и транзит.",
-    highlights: ["Экспорт/импорт", "Маршруты под проект", "Документы"],
-    hubs: ["Ашхабад", "Туркменабад", "Балканабат"],
-    services: ["Мультимодальные схемы", "Транзит через КЗ/РФ", "Проектные грузы"],
-  },
-  kg: {
-    title: "Кыргызстан",
-    description:
-      "Рейсы в Бишкек, Ош и регионы. Опыт работы с СЭЗ и кросс‑бордер.",
-    highlights: ["СЭЗ", "Кросс‑бордер", "Сроки"],
-    hubs: ["Бишкек", "Ош", "Кара‑Балта"],
-    services: ["Сборные грузы", "Склад‑кроссдок", "Таможенное сопровождение"],
-  },
-  cn: {
-    title: "Китай",
-    description:
-      "Наземная логистика с ключевых хабов Китая: Урумчи, Иу, Гуанчжоу, Шэньчжэнь. Экспорт и импорт.",
-    highlights: ["Опыт с кросс-бордер", "Проверенные партнеры", "Сроки от 7 дней"],
-    hubs: ["Урумчи", "Иу", "Гуанчжоу", "Шэньчжэнь"],
-    services: ["Авто/жд", "Промтаможня", "Проверка качества", "Консолидация"]
-  },
-  ru: {
-    title: "Россия",
-    description:
-      "Регулярные рейсы по Центральной и Сибирской части РФ. Доставка до дверей с отслеживанием.",
-    highlights: ["Отгрузки 24/7", "Холодная цепь при необходимости", "Складская логистика"],
-    hubs: ["Москва", "Санкт‑Петербург", "Екатеринбург", "Новосибирск"],
-    services: ["FTL/LTL", "Фулфилмент", "Рефрижераторы", "Страхование"]
-  },
-};
-
 export default function GeoCoverage() {
   const { t } = useLocale();
   const [active, setActive] = useState<RegionKey>("kz");
 
+  const regions: Record<RegionKey, RegionInfo> = {
+    kz: {
+      title: t("geo.regions.kz.title"),
+      description: t("geo.regions.kz.description"),
+      highlights: [
+        t("geo.regions.kz.highlights.0"),
+        t("geo.regions.kz.highlights.1"),
+        t("geo.regions.kz.highlights.2")
+      ],
+      hubs: [
+        t("geo.regions.kz.hubs.0"),
+        t("geo.regions.kz.hubs.1"),
+        t("geo.regions.kz.hubs.2"),
+        t("geo.regions.kz.hubs.3")
+      ],
+      services: [
+        t("geo.regions.kz.services.0"),
+        t("geo.regions.kz.services.1"),
+        t("geo.regions.kz.services.2"),
+        t("geo.regions.kz.services.3")
+      ],
+    },
+    uz: {
+      title: t("geo.regions.uz.title"),
+      description: t("geo.regions.uz.description"),
+      highlights: [
+        t("geo.regions.uz.highlights.0"),
+        t("geo.regions.uz.highlights.1"),
+        t("geo.regions.uz.highlights.2")
+      ],
+      hubs: [
+        t("geo.regions.uz.hubs.0"),
+        t("geo.regions.uz.hubs.1"),
+        t("geo.regions.uz.hubs.2"),
+        t("geo.regions.uz.hubs.3")
+      ],
+      services: [
+        t("geo.regions.uz.services.0"),
+        t("geo.regions.uz.services.1"),
+        t("geo.regions.uz.services.2"),
+        t("geo.regions.uz.services.3")
+      ],
+    },
+    tm: {
+      title: t("geo.regions.tm.title"),
+      description: t("geo.regions.tm.description"),
+      highlights: [
+        t("geo.regions.tm.highlights.0"),
+        t("geo.regions.tm.highlights.1"),
+        t("geo.regions.tm.highlights.2")
+      ],
+      hubs: [
+        t("geo.regions.tm.hubs.0"),
+        t("geo.regions.tm.hubs.1"),
+        t("geo.regions.tm.hubs.2")
+      ],
+      services: [
+        t("geo.regions.tm.services.0"),
+        t("geo.regions.tm.services.1"),
+        t("geo.regions.tm.services.2")
+      ],
+    },
+    kg: {
+      title: t("geo.regions.kg.title"),
+      description: t("geo.regions.kg.description"),
+      highlights: [
+        t("geo.regions.kg.highlights.0"),
+        t("geo.regions.kg.highlights.1"),
+        t("geo.regions.kg.highlights.2")
+      ],
+      hubs: [
+        t("geo.regions.kg.hubs.0"),
+        t("geo.regions.kg.hubs.1"),
+        t("geo.regions.kg.hubs.2")
+      ],
+      services: [
+        t("geo.regions.kg.services.0"),
+        t("geo.regions.kg.services.1"),
+        t("geo.regions.kg.services.2")
+      ],
+    },
+    cn: {
+      title: t("geo.regions.cn.title"),
+      description: t("geo.regions.cn.description"),
+      highlights: [
+        t("geo.regions.cn.highlights.0"),
+        t("geo.regions.cn.highlights.1"),
+        t("geo.regions.cn.highlights.2")
+      ],
+      hubs: [
+        t("geo.regions.cn.hubs.0"),
+        t("geo.regions.cn.hubs.1"),
+        t("geo.regions.cn.hubs.2"),
+        t("geo.regions.cn.hubs.3")
+      ],
+      services: [
+        t("geo.regions.cn.services.0"),
+        t("geo.regions.cn.services.1"),
+        t("geo.regions.cn.services.2"),
+        t("geo.regions.cn.services.3")
+      ]
+    },
+    ru: {
+      title: t("geo.regions.ru.title"),
+      description: t("geo.regions.ru.description"),
+      highlights: [
+        t("geo.regions.ru.highlights.0"),
+        t("geo.regions.ru.highlights.1"),
+        t("geo.regions.ru.highlights.2")
+      ],
+      hubs: [
+        t("geo.regions.ru.hubs.0"),
+        t("geo.regions.ru.hubs.1"),
+        t("geo.regions.ru.hubs.2"),
+        t("geo.regions.ru.hubs.3")
+      ],
+      services: [
+        t("geo.regions.ru.services.0"),
+        t("geo.regions.ru.services.1"),
+        t("geo.regions.ru.services.2"),
+        t("geo.regions.ru.services.3")
+      ]
+    },
+  };
+
   return (
-    <section className="py-20 bg-gradient-to-b from-neutral-50 to-white">
+    <section className="py-20">
       <div className="mx-auto max-w-[1530px] px-4 sm:px-6 lg:px-8">
         <h2 className="text-5xl font-extrabold text-center mb-4 tracking-tight">{t("geo.heading")}</h2>
         <p className="text-center text-gray-600 mb-12 text-lg max-w-3xl mx-auto">{t("geo.subtitle")}</p>
@@ -115,21 +189,31 @@ export default function GeoCoverage() {
               <div>
                 <div className="text-base font-semibold text-gray-900 mb-2">{t("geo.hubs")}</div>
                 <ul className="space-y-2 text-base text-gray-700">
-                  {regions[active].hubs.map((h) => (
-                    <li key={h} className="flex items-center gap-2">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#1E3F5F]" />{h}
-                    </li>
-                  ))}
+                  {regions[active].hubs.map((original, index) => {
+                    const key = `geo.regions.${active}.hubs.${index}`;
+                    const translated = t(key);
+                    const label = translated === key ? original : translated;
+                    return (
+                      <li key={`${original}-${index}`} className="flex items-center gap-2">
+                        <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#1E3F5F]" />{label}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
               <div>
                 <div className="text-base font-semibold text-gray-900 mb-2">{t("geo.services")}</div>
                 <ul className="space-y-2 text-base text-gray-700">
-                  {regions[active].services.map((s) => (
-                    <li key={s} className="flex items-center gap-2">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#FC0201]" />{s}
-                    </li>
-                  ))}
+                  {regions[active].services.map((original, index) => {
+                    const key = `geo.regions.${active}.services.${index}`;
+                    const translated = t(key);
+                    const label = translated === key ? original : translated;
+                    return (
+                      <li key={`${original}-${index}`} className="flex items-center gap-2">
+                        <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#FC0201]" />{label}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </div>
@@ -137,11 +221,16 @@ export default function GeoCoverage() {
             <div className="mt-6">
               <div className="text-base font-semibold text-gray-900 mb-2">{t("geo.advantages")}</div>
               <ul className="grid sm:grid-cols-2 gap-2 text-base text-gray-700">
-                {regions[active].highlights.map((h) => (
-                  <li key={h} className="flex items-center gap-2">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500" />{h}
-                  </li>
-                ))}
+                {regions[active].highlights.map((original, index) => {
+                  const key = `geo.regions.${active}.highlights.${index}`;
+                  const translated = t(key);
+                  const label = translated === key ? original : translated;
+                  return (
+                    <li key={`${original}-${index}`} className="flex items-center gap-2">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500" />{label}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
@@ -155,22 +244,6 @@ export default function GeoCoverage() {
             <div className="p-[1.5px] rounded-3xl bg-gradient-to-tr from-[#1E3F5F]/25 via-[#1E3F5F]/10 to-transparent">
               <div className="rounded-[22px] bg-white h-[520px]">
                 <GeoCoverageMap active={active} />
-              </div>
-            </div>
-
-            {/* Legend */}
-            <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-gray-600">
-              <div className="flex items-center gap-2">
-                <span className="inline-block w-5 h-3 rounded border border-[#ff3b18]" style={{ background: "repeating-linear-gradient(45deg, rgba(255,95,31,.25) 0 4px, rgba(255,95,31,.25) 4px 8px)" }} />
-                {t("geo.legend.selected")}
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="inline-block w-5 h-3 rounded bg-gray-200 border border-gray-300" />
-                {t("geo.legend.other")}
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="inline-block w-5 h-0.5 bg-gray-500" />
-                {t("geo.legend.borders")}
               </div>
             </div>
           </div>

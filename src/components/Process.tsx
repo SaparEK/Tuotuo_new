@@ -11,7 +11,7 @@ export default function ProcessTree() {
       <div className="mx-auto max-w-[1530px] px-4 sm:px-6 lg:px-8 relative">
         <h2 className="text-center text-5xl font-extrabold mb-16">
           {t("process.heading")}
-        </h2>
+              </h2>
 
         {/* Mobile layout */}
         <div className="md:hidden relative flex flex-col items-center">
@@ -21,7 +21,6 @@ export default function ProcessTree() {
             <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-px bg-sky-300" />
 
             <StepCardWithTopDot
-              label={t("process.step1.label")}
               title={t("process.step1.title")}
               text={t("process.step1.text")}
             />
@@ -44,7 +43,7 @@ export default function ProcessTree() {
 
             {/* Кнопка с точкой сверху */}
             <div className="flex flex-col items-center relative mt-8">
-              <Dot className="absolute -top-5 left-1/2 -translate-x-1/2" />
+              <Dot className="left-1/2" />
               <a
                 href="#contacts"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-xl text-lg bg-[var(--brand)] text-white font-semibold shadow-lg hover:brightness-110"
@@ -60,11 +59,10 @@ export default function ProcessTree() {
           {/* Контейнер для вертикальной линии */}
           <div className="relative w-full flex flex-col items-center">
             {/* Вертикальная линия теперь динамическая */}
-            <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-px bg-sky-400" />
+            <div className="absolute top-3 bottom-0 left-1/2 -translate-x-1/2 w-px bg-sky-400" />
 
             {/* Уровень 1 */}
             <StepCardWithTopDot
-              label={t("process.step1.label")}
               title={t("process.step1.title")}
               text={t("process.step1.text")}
             />
@@ -82,7 +80,7 @@ export default function ProcessTree() {
             </HorizontalStepLevel>
 
             {/* Уровень 3 */}
-            <HorizontalStepLevel>
+            <HorizontalStepLevel compact>
               <StepCardWithTopDot
                 title={t("process.delivery.title")}
                 text={t("process.delivery.text")}
@@ -94,14 +92,16 @@ export default function ProcessTree() {
             </HorizontalStepLevel>
 
             {/* Кнопка с точкой сверху */}
-            <div className="flex  flex-col items-center relative mt-12 w-full max-w-[1530px]">
-              <Dot className="absolute left-1/2 -translate-x-1/2" />
-              <a
-                href="#contacts"
-                className="inline-flex items-center justify-center px-10 py-4 rounded-xl text-lg bg-[var(--brand)] text-white font-semibold shadow-lg hover:brightness-110"
-              >
-                {t("process.cta")}
-              </a>
+            <div className="flex flex-col items-center relative mt-12 w-full max-w-[1530px]">
+            <div className="relative flex flex-col items-center">
+    <Dot className="top-5 left-1/2" />
+    <a
+      href="#contacts"
+      className="inline-flex items-center justify-center px-10 py-4 rounded-xl text-lg bg-[var(--brand)] text-white font-semibold shadow-lg hover:brightness-110"
+    >
+      {t("process.cta")}
+    </a>
+              </div>
             </div>
           </div>
         </div>
@@ -122,21 +122,33 @@ function StepCardWithTopDot({
 }) {
   return (
     <div className="flex flex-col items-center relative mb-14">
-      <Dot className="absolute -top-5 left-1/2 -translate-x-1/2" />
+      <Dot className="absolute top-3 left-1/2 -translate-x-1/2" />
       <StepCard label={label} title={title} text={text} />
     </div>
   );
 }
-
 /* Горизонтальный уровень */
-function HorizontalStepLevel({ children }: { children: React.ReactNode }) {
+function HorizontalStepLevel({
+  children,
+  compact = false, // добавляем проп
+}: {
+  children: React.ReactNode;
+  compact?: boolean;
+}) {
   return (
-    <div className="relative flex justify-between w-full max-w-[1530px] mb-24 items-start">
+    <div
+      className={`relative flex w-full max-w-[1530px] mb-24 items-start ${
+        compact ? "justify-center gap-16" : "justify-between"
+      }`}
+    >
+      {/* Горизонтальная линия */}
       <div
-        className="absolute left-0 right-0 h-px rounded-full"
+        className={`absolute h-px rounded-full ${
+          compact ? "left-1/3 right-1/3" : "left-1/8 right-1/8"
+        }`}
         style={{
           background:
-            "linear-gradient(to right, transparent, #38bdf8, #38bdf8, transparent)",
+            "linear-gradient(to right, transparent, #38bdf8, transparent)",
         }}
       />
       {children}
@@ -156,7 +168,7 @@ function StepCard({
 }) {
   return (
     <div className="p-[1.5px]  relative">
-      <div className="rounded-2xl top-5 bg-white px-8 py-7 w-[320px] text-center relative">
+      <div className="rounded-2xl top-4 bg-white px-8 py-7 w-[320px] text-center relative">
         {label && (
           <div className="text-base text-gray-500 mb-3">{label}</div>
         )}
@@ -171,7 +183,7 @@ function StepCard({
 function Dot({ className = "" }: { className?: string }) {
   return (
     <div
-      className={`w-4 h-4 rounded-full bg-sky-400 ring-2 ring-white shadow-md z-20 ${className}`}
+      className={`w-4 h-4 top-3 rounded-full bg-sky-400 ring-2 ring-white shadow-md z-20 ${className}`}
     />
   );
 }
